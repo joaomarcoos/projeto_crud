@@ -26,10 +26,9 @@
                 @endforeach
             </ul>
 
-            @csrf
             <form action="/events/join/{{$event->id}}" method="POST">
-                <a 
-                href="/events/join/{{$event->id}}" 
+                @csrf
+                <a  
                 class="btn btn-primary" 
                 id="event-submit"
                 onclick="event.preventDefault();

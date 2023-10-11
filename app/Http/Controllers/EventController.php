@@ -118,7 +118,9 @@ class EventController extends Controller
 
     public function joinEvent($id){
 
+        // dd("morreu");
         $user = auth()->user();
+
 
         $user->eventsAsParticipant()->attach($id);
 
