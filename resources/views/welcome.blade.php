@@ -28,7 +28,7 @@
                             <p class="card-date">{{ \Carbon\Carbon::parse($event->dt_event)->format('d/m/Y') }}</p>
                             <h5 class="card-title">{{ $event->title}}</h5>
                             <p>{{ $event->city}}</p>
-                            <p class="card-participants">X participantes</p>
+                            <p class="card-participants"> {{ count($event->users) }} participantes</p>
                             <a href="/events/{{$event->id}}" class="btn btn-primary"> Saber mais</a>
                         </div>
                     </div>

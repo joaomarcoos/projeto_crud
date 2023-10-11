@@ -251,6 +251,52 @@ header{
     margin: 20px 0;
 }
 
+
+/*
+    Dashboard
+*/
+
+.dashboard-title-container{
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.dashboard-events-container form{
+    display: inline-block !important;
+}
+
+.info-events{
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+}
+
+.info-link-events{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info-link-events a{
+    color: #212121;
+    list-style: none;
+    text-decoration: none;
+    border: 1px solid #212121;
+    padding: 5px;
+    border-radius: 10px;
+}
+.info-link-events a:hover{
+    background-color: #212121;
+    color: white;
+}
+
+/*
+    Edit
+*/
+
+.image-preview{
+    width: 100px;
+    margin-top: 20px;
+}
 /*
      Footer
 */

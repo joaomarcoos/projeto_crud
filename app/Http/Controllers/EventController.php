@@ -71,4 +71,59 @@ class EventController extends Controller
 
         return view('events.show', ['event'=>$event, 'eventOwner'=> $eventOwner]);
     }
+
+    public function destroy($id){
+        Event::findOrFail($id)->delete();
+
+        return redirect('/dashboard')->with('msg','Evento excluido com sucesso!');
+    }
+
+
+    public function dashboard(){
+        $user = auth()->user();
+
+        $event = $user->events;
+
+        return view('events.dashboard', ['events'=>$event]);
+    }
+
+    public function edit($id){
+        $event = Event::findOrFail($id);
+
+        return view('events.edit', ['event'=>$event]);
+    }
+
+
+    public function update(Request $request){
+
+        $data = $request->all();
+
+        if($request->hasFile('image') && $request->File('image')->isValid()){
+
+            $requestImage = $request->image;
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("Now")) . "." . $requestImage->extension();
+
+            $requestImage->move(public_path('image/events'), $imageName);
+
+            $data['image'] = $imageName;
+        }
+
+        Event::findOrFail($request->id)->update($data);
+
+
+        return redirect('/dashboard')->with('msg','Evento editado com sucesso!');
+    }
+
+    public function joinEvent($id){
+
+        $user = auth()->user();
+
+        $user->eventsAsParticipant()->attach($id);
+
+        $event = Event::findOrFail($id);
+
+        return redirect('/dashboard')->with('msg',  'Sua presença está confirmada no evento'.$event->title);
+    }
 }
