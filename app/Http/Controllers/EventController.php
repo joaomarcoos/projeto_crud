@@ -84,13 +84,27 @@ class EventController extends Controller
 
         $event = $user->events;
 
-        return view('events.dashboard', ['events'=>$event]);
+        $eventsAsParticipant = $user->eventsAsParticipant;
+
+        //dd($eventsAsParticipant);
+
+        return view('events.dashboard', ['events'=>$event, 'eventsAsParticipant'=>$eventsAsParticipant]);
     }
 
     public function edit($id){
+
+        $user = auth()->user();
+
         $event = Event::findOrFail($id);
 
+
+        if($user->id != $event->user->id){
+            return view('events.dashboard');
+        }
+
         return view('events.edit', ['event'=>$event]);
+
+        
     }
 
 
