@@ -26,16 +26,20 @@
                 @endforeach
             </ul>
 
-            <form action="/events/join/{{$event->id}}" method="POST">
-                @csrf
-                <a  
-                class="btn btn-primary" 
-                id="event-submit"
-                onclick="event.preventDefault();
-                this.closest('form').submit();"> 
-                Confimar presença
-            </a>
-            </form>
+            @if (!$hasUserJoined)
+                <form action="/events/join/{{$event->id}}" method="POST">
+                    @csrf
+                    <a  
+                    class="btn btn-primary" 
+                    id="event-submit"
+                    onclick="event.preventDefault();
+                    this.closest('form').submit();"> 
+                    Confimar presença
+                </a>
+                </form>
+            @else
+                <p class="already-joined-msg">Você já está participando deste evento! </p>
+            @endif
             
         </div>
 
